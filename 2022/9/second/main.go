@@ -51,7 +51,6 @@ func (tail *Part) follow(head Part) {
 		tail.move("L")
 	} else if diffY == 2 {
 		if diffX >= 1 {
-			fmt.Printf("Moving R? head:%v, tail:%v\n", head, tail)
 			tail.move("R")
 		} else if diffX <= -1 {
 			tail.move("L")
@@ -59,7 +58,6 @@ func (tail *Part) follow(head Part) {
 		tail.move("U")
 	} else if diffY == -2 {
 		if diffX >= 1 {
-			fmt.Printf("Moving R? head:%v, tail:%v\n", head, tail)
 			tail.move("R")
 		} else if diffX <= -1 {
 			tail.move("L")
@@ -69,39 +67,39 @@ func (tail *Part) follow(head Part) {
 
 }
 
-func drawGrid(hashmap map[string]Cell, width int, height int) {
-	fmt.Printf("   ")
-	for i := -50; i <= width/2; i++ {
-		if i%5 == 0 {
-			fmt.Printf(" | ")
-		} else {
-			fmt.Printf(" . ")
-		}
+// func drawGrid(hashmap map[string]Cell, width int, height int) {
+// 	fmt.Printf("   ")
+// 	for i := -50; i <= width/2; i++ {
+// 		if i%5 == 0 {
+// 			fmt.Printf(" | ")
+// 		} else {
+// 			fmt.Printf(" . ")
+// 		}
 
-	}
-	fmt.Printf(" \n")
-	for y := height / 2; y >= -50; y-- {
-		if y%5 == 0 {
-			if y < 10 && y >= 0 {
-				fmt.Printf("0%v ", y)
-			} else if y <= -10 {
-				fmt.Printf("%v", y)
-			} else {
-				fmt.Printf("%v ", y)
-			}
-		} else {
-			fmt.Printf("-  ")
-		}
-		for x := -50; x <= width/2; x++ {
-			if _, exist := hashmap[strconv.Itoa(x)+":"+strconv.Itoa(y)]; exist {
-				fmt.Printf(" # ")
-			} else {
-				fmt.Printf(" . ")
-			}
-		}
-		fmt.Printf("\n")
-	}
-}
+// 	}
+// 	fmt.Printf(" \n")
+// 	for y := height / 2; y >= -50; y-- {
+// 		if y%5 == 0 {
+// 			if y < 10 && y >= 0 {
+// 				fmt.Printf("0%v ", y)
+// 			} else if y <= -10 {
+// 				fmt.Printf("%v", y)
+// 			} else {
+// 				fmt.Printf("%v ", y)
+// 			}
+// 		} else {
+// 			fmt.Printf("-  ")
+// 		}
+// 		for x := -50; x <= width/2; x++ {
+// 			if _, exist := hashmap[strconv.Itoa(x)+":"+strconv.Itoa(y)]; exist {
+// 				fmt.Printf(" # ")
+// 			} else {
+// 				fmt.Printf(" . ")
+// 			}
+// 		}
+// 		fmt.Printf("\n")
+// 	}
+// }
 
 func main() {
 	file, err := os.Open("../input.txt")
@@ -140,7 +138,5 @@ func main() {
 			hashmap[strconv.Itoa(tails[8].x)+":"+strconv.Itoa(tails[8].y)] = Cell{x: tails[8].x, y: tails[8].y}
 		}
 	}
-	drawGrid(hashmap, 90, 40)
-	fmt.Println(hashmap)
 	fmt.Println(len(hashmap))
 }
